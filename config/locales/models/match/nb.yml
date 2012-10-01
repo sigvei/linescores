@@ -1,0 +1,9 @@
+nb:
+  activerecord:
+    models:
+      match: Kamp
+    attributes:
+      location: Sted
+      time: Tidspunkt
+      opponent: Motstander
+      tournament: Turnering
