@@ -25,6 +25,18 @@ group :test, :development do
   gem 'capybara'
 end
 
+group :test do
+  gem 'turnip'
+end
+
+group :development do
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'terminal-notifier-guard' if RUBY_PLATFORM =~ /darwin12/i
+  gem 'coolline' if RUBY_VERSION == "1.9.3"
+end
+
 gem 'jquery-rails'
 
 gem 'haml-rails'
