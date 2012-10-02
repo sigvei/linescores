@@ -72,3 +72,24 @@ h2 {
   font-weight: normal;
 }
 
+table.scorecard {
+  border-collapse: collapse;
+  td.team {
+    min-width: 5em;
+    font-weight: bold;
+    text-align: right;
+  }
+  td.scorecell {
+    width: 2em;
+    padding: 0.6em;
+    text-align: center;
+    font-size: larger;
+    border: 1px solid black;
+    min-height: 1em;
+  }
+}
+
+.matchbox {
+  text-align: center;
+}
+

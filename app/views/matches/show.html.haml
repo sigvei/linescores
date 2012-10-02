@@ -1,17 +1,31 @@
+%h1= t(".show_match")
+
 %p#notice= notice
 
-%p
-  %b Opponent:
-  = @match.opponent
-%p
-  %b Time:
-  = @match.time
-%p
-  %b Location:
-  = @match.location
-%p
-  %b Tournament:
-  = @match.tournament
+
+.matchbox
+  %p
+    %em
+      = [@match.tournament, @match.location, @match.time ? l(@match.time, :format => :long) : nil].delete_if(&:blank?).join(", ")
+    %h2
+      Vs.
+      = @match.opponent
+
+%table.scorecard
+  %tr
+    - ([ "", "" ] + (1..12).to_a + ["Sum"]).each do |s|
+      %th= s
+  - [ [t(".us"), :our_score, :first_hammer?], [@match.opponent, :opponent_score, :their_first_hammer?] ].each do |team, scoremethod, hammermethod|
+    %tr
+      %td.team= team
+      %td.scorecell
+        - if @match.send(hammermethod)
+          ⚒
+      - (1..12).each do |n|
+        %td.scorecell= @match.send(scoremethod, n)
+      %td.scorecell.total
+        %strong= @match.send(scoremethod)
+      
 
 = link_to 'Edit', edit_match_path(@match)
 \|

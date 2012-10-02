@@ -1,0 +1,6 @@
+nb:
+  matches:
+    index:
+      new_match: "Ny kamp"
+    show:
+      show_match: "Kampdetaljer"
