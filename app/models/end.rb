@@ -1,12 +1,17 @@
 class End < ActiveRecord::Base
-  attr_accessible :match_id, :position, :result
-
+  attr_accessible :match_id, :position, :result, :our_score, :their_score
   belongs_to :match
-
+  validates :our_score, :their_score, :inclusion => (0..8), :allow_blank => true
   acts_as_list :scope => :match
 
+  before_save :normalize_scores
+
+  def result
+    (our_score || 0) - (their_score || 0)
+  end
+
   def won?
-    result > 0
+    result && result > 0
   end
 
   def blanked?
@@ -14,7 +19,7 @@ class End < ActiveRecord::Base
   end
 
   def lost?
-    result < 0
+    result && result < 0
   end
 
   def our_hammer?
@@ -27,5 +32,19 @@ class End < ActiveRecord::Base
 
   def stole?
     won? and (not our_hammer?)
+  end
+
+  private
+
+  def normalize_scores
+    if self.our_score.try(:nonzero?) and self.their_score.try(:nonzero?)
+      if self.result > 0
+        self.our_score = self.result
+        self.their_score = nil
+      else
+        self.their_score = result.abs
+        self.our_score = nil
+      end
+    end
   end
 end

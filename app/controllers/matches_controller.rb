@@ -25,6 +25,7 @@ class MatchesController < ApplicationController
   # GET /matches/new.json
   def new
     @match = Match.new
+    12.times { @match.ends.build }
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +36,9 @@ class MatchesController < ApplicationController
   # GET /matches/1/edit
   def edit
     @match = Match.find(params[:id])
+    until @match.ends.size == 12
+      @match.ends.build
+    end
   end
 
   # POST /matches

@@ -1,9 +1,14 @@
 %h1= t(".show_match")
 
+
 %p#notice= notice
 
 
 .matchbox
+  %p
+    = link_to t(:edit), edit_match_path(@match)
+    \|
+    = link_to t(:back), matches_path
   %p
     %em
       = [@match.tournament, @match.location, @match.time ? l(@match.time, :format => :long) : nil].delete_if(&:blank?).join(", ")
@@ -27,6 +32,3 @@
         %strong= @match.send(scoremethod)
       
 
-= link_to 'Edit', edit_match_path(@match)
-\|
-= link_to 'Back', matches_path

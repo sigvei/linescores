@@ -18,5 +18,17 @@
   .field
     = f.label :tournament
     = f.text_field :tournament
+
+  .field
+    = f.label :result
+    %table
+      %tr
+        %th= t(:end_number)
+        %th= t(:our_score)
+        %th= t(:their_score)
+      - @position = 0
+      = f.fields_for :ends do |builder|
+        = render 'ends_fields', :f => builder
+
   .actions
     = f.submit 'Save'
