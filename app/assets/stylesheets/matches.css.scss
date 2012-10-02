@@ -28,7 +28,7 @@
 
 .match .tournament_location {
   width: 200px;
-  font-size: small;
+  font-size: smaller;
 }
 
 .match .score {
@@ -92,4 +92,10 @@ table.scorecard {
 .matchbox {
   text-align: center;
 }
+
+label {
+  display: inline-block;
+  width: 7em;
+}
+
 

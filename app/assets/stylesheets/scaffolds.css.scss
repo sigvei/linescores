@@ -2,14 +2,14 @@ body {
   background-color: #fff;
   color: #333;
   font-family: 'Arbutus Slab', serif;
-  font-size: 11px;
-  line-height: 14px;
+  font-size: 13px;
+  line-height: 18px;
 }
 
 p, ol, ul, td {
   font-family: serif;
-  font-size: 11px;
-  line-height: 14px;
+  font-size: 13px;
+  line-height: 18px;
 }
 
 pre {
@@ -19,13 +19,10 @@ pre {
 }
 
 a {
-  color: #000;
-  &:visited {
-    color: #666;
-  }
+  color: blue;
+  text-decoration: none;
   &:hover {
-    color: #fff;
-    background-color: #000;
+    text-decoration: underline;
   }
 }
 
