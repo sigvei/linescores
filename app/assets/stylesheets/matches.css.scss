@@ -1,3 +1,74 @@
 // Place all the styles related to the Matches controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.match {
+  padding: 10px;
+  width: 800px;
+  border-bottom: 3px dotted #aaa;
+}
+
+.match div {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0;
+  margin: 0;
+}
+
+
+.match .time {
+  width: 80px;
+  font-size: large;
+}
+
+.match .opponent {
+  width: 400px;
+  font-size: large;
+}
+
+.match .tournament_location {
+  width: 200px;
+  font-size: small;
+}
+
+.match .score {
+  width: 100px;
+  font-size: x-large;
+}
+.our_score, .opponent_score {
+  width: 1.6em;
+}
+
+.opponent_score {
+  text-align: left;
+}
+
+.our_score {
+  text-align: right;
+}
+
+.match a {
+  color: blue;
+  text-decoration: none;
+}
+.match a:visited {
+  color: blue;
+}
+.match a:hover {
+  background: none;
+  text-decoration: underline;
+}
+
+h1 {
+  text-align: center;
+}
+
+
+h2 {
+  font-family: 'Rouge Script', cursive;
+  color: #aaa;
+  font-size: 72px;
+  text-align: center;
+  font-weight: normal;
+}
+
