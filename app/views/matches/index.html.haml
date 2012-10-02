@@ -7,7 +7,7 @@
       .time>= l(m.time.to_date, :format => :short) if m.time
       .opponent= link_to(m.opponent, match_path(m))
       .tournament_location
-        = [m.tournament, m.location].delete_if(&:empty?).join(", ")
+        = [m.tournament, m.location].delete_if(&:blank?).join(", ")
       .score
         .our_score= m.our_score
         –
