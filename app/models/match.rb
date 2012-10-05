@@ -15,8 +15,8 @@ class Match < ActiveRecord::Base
       [nil, nil]
     else
       ends.inject([0,0]) do |score, e|
-        [ score[0] + (e.our_score || 0),
-          score[1] + (e.their_score || 0) ]
+        [ score[0] + (e.score[0] || 0),
+          score[1] + (e.score[1] || 0) ]
       end
     end
   end

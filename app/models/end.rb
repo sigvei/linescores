@@ -13,6 +13,7 @@ class End < ActiveRecord::Base
   # The score is an array [us,them] given *with pretty printing*, i.e.
   # nil for zero points except when blanking with hammer
   def score
+    normalize_scores
     if result == 0
       our_hammer? ? [0,nil] : [nil,0]
     else
