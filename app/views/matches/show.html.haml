@@ -16,19 +16,18 @@
       Vs.
       = @match.opponent
 
-%table.scorecard
-  %tr
-    - ([ "", "" ] + (1..12).to_a + ["Sum"]).each do |s|
-      %th= s
-  - [ [t(".us"), :our_score, :first_hammer?], [@match.opponent, :opponent_score, :their_first_hammer?] ].each do |team, scoremethod, hammermethod|
+- if @match.ends.any?
+  %table.scorecard
     %tr
-      %td.team= team
-      %td.scorecell
-        - if @match.send(hammermethod)
-          ⚒
-      - (1..12).each do |n|
-        %td.scorecell= @match.send(scoremethod, n)
-      %td.scorecell.total
-        %strong= @match.send(scoremethod)
-      
-
+      - ([ "", "" ] + (1..(@match.ends.size)).to_a + ["Sum"]).each do |s|
+        %th= s
+    - @match.scorecard.each do |line|
+      %tr
+        %td.team= cycle(t(".us"), @match.opponent)
+        %td.hammer= "⚒" if line.shift
+        - line.each do |cell|
+          %td.scorecell= cell
+- else
+  %p 
+    = t(".no_results_yet")
+    = link_to t(".add_results"), edit_match_path(@match)

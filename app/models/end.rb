@@ -10,6 +10,17 @@ class End < ActiveRecord::Base
     (our_score || 0) - (their_score || 0)
   end
 
+  # The score is an array [us,them] given *with pretty printing*, i.e.
+  # nil for zero points except when blanking with hammer
+  def score
+    if result == 0
+      our_hammer? ? [0,nil] : [nil,0]
+    else
+      [ our_score.to_i > 0 ? our_score : nil, 
+        their_score.to_i > 0 ? their_score : nil ]
+    end
+  end
+
   def won?
     result && result > 0
   end
@@ -42,9 +53,12 @@ class End < ActiveRecord::Base
         self.our_score = self.result
         self.their_score = nil
       else
-        self.their_score = result.abs
+        self.their_score = self.result.abs
         self.our_score = nil
       end
+    elsif self.our_score != self.their_score
+      self.our_score = nil if self.our_score == 0
+      self.their_score = nil if self.their_score == 0
     end
   end
 end
