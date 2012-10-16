@@ -2,3 +2,6 @@
   %td= @position += 1
   %td= f.text_field :our_score, :size => 2
   %td= f.text_field :their_score, :size => 2
+  - unless f.object.new_record?
+    %td= f.check_box '_destroy'
+    %td= f.label '_destroy', t(".delete")
