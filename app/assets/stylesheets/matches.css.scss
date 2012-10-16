@@ -5,7 +5,14 @@
 .match {
   padding: 10px;
   width: 800px;
-  border-bottom: 3px dotted #aaa;
+}
+
+.odd {
+  background: #aacccc;
+}
+
+.even {
+  background: #ccbb77;
 }
 
 .match div {
@@ -15,6 +22,12 @@
   margin: 0;
 }
 
+.match div {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0;
+  margin: 0;
+}
 
 .match .time {
   width: 80px;
@@ -36,7 +49,7 @@
   font-size: x-large;
 }
 .our_score, .opponent_score {
-  width: 1.6em;
+  width: 30px;
 }
 
 .opponent_score {
@@ -66,7 +79,7 @@ h1 {
 
 h2 {
   font-family: 'Rouge Script', cursive;
-  color: #aaa;
+  color: #aa7755;
   font-size: 72px;
   text-align: center;
   font-weight: normal;
@@ -74,6 +87,7 @@ h2 {
 
 table.scorecard {
   border-collapse: collapse;
+  margin: auto auto;
   td.team {
     min-width: 5em;
     font-weight: bold;
@@ -83,9 +97,15 @@ table.scorecard {
     width: 2em;
     padding: 0.6em;
     text-align: center;
-    font-size: larger;
+    font-size: large;
     border: 1px solid black;
     min-height: 1em;
+    font-family: 'Wallpoet', cursive;
+  }
+  td.hammer {
+    font-size: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
 
