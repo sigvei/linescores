@@ -36,7 +36,7 @@ class End < ActiveRecord::Base
 
   def our_hammer?
     if first?
-      match.first_hammer?
+      match.our_first_hammer?
     else
       higher_item.lost? or (higher_item.blanked? and higher_item.our_hammer?)
     end

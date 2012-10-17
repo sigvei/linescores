@@ -1,6 +1,6 @@
 # encoding: UTF-8
 class Match < ActiveRecord::Base
-  attr_accessible :location, :opponent, :time, :tournament, :ends_attributes
+  attr_accessible :location, :opponent, :time, :tournament, :ends_attributes, :our_first_hammer
 
   validates :opponent, :presence => true
 
@@ -31,15 +31,10 @@ class Match < ActiveRecord::Base
 
   def scorecard
     return nil unless ends
-    ( [ [first_hammer?, their_first_hammer?] ] + ends.map(&:score) + [ score ] ).transpose
-  end
-
-  def first_hammer?
-    # TODO: Implement
-    true
+    ( [ [our_first_hammer?, their_first_hammer?] ] + ends.map(&:score) + [ score ] ).transpose
   end
 
   def their_first_hammer?
-    not first_hammer?
+    not our_first_hammer?
   end
 end
