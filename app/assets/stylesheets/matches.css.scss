@@ -27,16 +27,16 @@
 }
 
 .match .tournament_location {
-  width: 200px;
+  width: 180px;
   font-size: smaller;
 }
 
 .match .score {
-  width: 100px;
+  width: 120px;
   font-size: x-large;
 }
 .our_score, .opponent_score {
-  width: 1.6em;
+  width: 1.7em;
 }
 
 .opponent_score {
@@ -76,8 +76,12 @@ table.scorecard {
   border-collapse: collapse;
   td.team {
     min-width: 5em;
-    font-weight: bold;
+    font-weight: normal;
     text-align: right;
+  }
+  td.hammer {
+    font-size: 150%;
+    padding-left: 0.4em;
   }
   td.scorecell {
     width: 2em;
@@ -87,6 +91,8 @@ table.scorecard {
     border: 1px solid black;
     min-height: 1em;
   }
+
+  margin: auto auto;
 }
 
 .matchbox {

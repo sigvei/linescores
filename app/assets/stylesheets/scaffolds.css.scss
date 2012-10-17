@@ -7,10 +7,15 @@ body {
 }
 
 p, ol, ul, td {
-  font-family: serif;
+  font-family: 'Arbutus Slab', serif;
   font-size: 13px;
   line-height: 18px;
 }
+
+th {
+  font-weight: normal;
+}
+
 
 pre {
   background-color: #eee;
