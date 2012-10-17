@@ -1,21 +1,54 @@
 require 'spec_helper'
 
 describe Shot do
-  describe "validations" do
-    before(:each) do
-      @m = Match.new(:opponent => "Test")
-      @e = @m.ends.build
-      @e.save
+  before(:each) do
+    @m = Match.new(:opponent => "Test")
+    @e = @m.ends.build
+    @e.save
 
-      @valid_attributes = {
-        :turn => "I",
-        :call => "D",
-        :success => nil,
-        :rock => 1,
-        :team => "us",
-        :player => "Thomas Ulsrud",
-        :end_id => @e.id
-      }
+    @valid_attributes = {
+      :turn => "I",
+      :call => "D",
+      :success => nil,
+      :rock => 1,
+      :team => "us",
+      :player => "Thomas Ulsrud",
+      :end_id => @e.id
+    }
+  end
+
+  describe "uniqueness validations" do
+    it "should not allow two rocks with same number" do
+      @s1 = Shot.create(@valid_attributes)
+      @s1.should be_valid
+      @s1.should_not be_new_record
+
+      @s2 = Shot.new(@valid_attributes)
+      @s2.should_not be_valid
+      @s2.rock = 2
+      @s2.should be_valid
+    end
+
+    it "should allow rocks with same number from different teams" do
+      @s1 = Shot.create(@valid_attributes)
+      @s2 = Shot.new(@valid_attributes)
+      @s2.should_not be_valid
+      @s2.team = "them"
+      @s2.should be_valid
+    end
+
+    it "should allow rocks with same number in different ends" do
+      @s1 = Shot.create(@valid_attributes)
+      @s2 = Shot.new(@valid_attributes)
+      @s2.should_not be_valid
+      @s2.end = @m.ends.build
+      @s2.should be_valid
+    end
+  end
+
+
+  describe "inclusion validations" do
+    before(:each) do
       @s = Shot.new(@valid_attributes)
     end
   
