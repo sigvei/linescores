@@ -1,6 +1,7 @@
 class End < ActiveRecord::Base
   attr_accessible :match_id, :position, :result, :our_score, :their_score
   belongs_to :match
+  has_many :shots, :dependent => :destroy
   validates :our_score, :their_score, :inclusion => (0..8), :allow_blank => true
   acts_as_list :scope => :match
 
