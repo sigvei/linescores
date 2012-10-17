@@ -8,3 +8,18 @@ nb:
         time: Tidspunkt
         opponent: Motstander
         tournament: Turnering
+        our_first_hammer: Vår sistesten i første omgang?
+        our_lead: Vår ener
+        our_second: Vår toer
+        our_third: Vår treer
+        our_fourth: Vår firer
+        our_alternate: Vår reserve
+        our_skip: Vår skip
+        our_viceskip: Vår viseskip
+        their_lead: Deres ener
+        their_second: Deres toer
+        their_third: Deres treer
+        their_fourth: Deres firer
+        their_skip: Deres skip
+        their_viceskip: Deres viseskip
+        their_alternate: Deres reserve

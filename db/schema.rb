@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121016083257) do
+ActiveRecord::Schema.define(:version => 20121017112144) do
 
   create_table "ends", :force => true do |t|
     t.integer  "match_id"
@@ -30,6 +30,20 @@ ActiveRecord::Schema.define(:version => 20121016083257) do
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.boolean  "our_first_hammer"
+    t.string   "our_lead"
+    t.string   "our_second"
+    t.string   "our_third"
+    t.string   "our_fourth"
+    t.string   "our_alternate"
+    t.string   "their_lead"
+    t.string   "their_second"
+    t.string   "their_third"
+    t.string   "their_fourth"
+    t.string   "their_alternate"
+    t.integer  "our_skip"
+    t.integer  "their_skip"
+    t.integer  "our_viceskip"
+    t.integer  "their_viceskip"
   end
 
 end

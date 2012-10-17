@@ -21,17 +21,38 @@
   .field
     = f.label :our_first_hammer
     = f.check_box :our_first_hammer
-
-  .field
-    = f.label :result
+  - %w(our their).each do |team|
+    %strong= t("." + team + "_lineup")
     %table
       %tr
-        %th= t(:end_number)
-        %th= t(:our_score)
-        %th= t(:their_score)
+        %td
+        %td
+        %td
+          = f.label (team + "_skip").to_sym
+          %br/
+          = f.radio_button (team + "_skip").to_sym, nil
+        %td
+          = f.label (team + "_viceskip").to_sym
+          %br/
+          = f.radio_button (team + "_viceskip").to_sym, nil
+      - %w(lead second third fourth alternate).each_with_index do |position, i|
+        %tr
+          - fld = (team + "_" + position).to_sym
+          %td= f.label fld
+          %td= f.text_field fld
+          %td= f.radio_button (team + "_skip").to_sym, i + 1
+          %td= f.radio_button (team + "_viceskip").to_sym, i + 1
+
+  .field
+    %strong= t(".result")
+    %table
+      %tr
+        %th= t(".end_number")
+        %th= t(".our_score")
+        %th= t(".their_score")
       - @position = 0
       = f.fields_for :ends do |builder|
         = render 'ends_fields', :f => builder
 
   .actions
-    = f.submit 'Save'
+    = f.submit t("save")

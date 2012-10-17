@@ -16,18 +16,39 @@
       Vs.
       = @match.opponent
 
-- if @match.ends.any?
-  %table.scorecard
+
+  %h3= t(".lineups")
+  %table.lineup
     %tr
-      - ([ "", "" ] + (1..(@match.ends.size)).to_a + ["Sum"]).each do |s|
-        %th= s
-    - @match.scorecard.each do |line|
+      %th= t(".pos")
+      %th= t(".us")
+      %th= @match.opponent
+    - %w(lead second third fourth alternate).each_with_index do |pos,i|
       %tr
-        %td.team= cycle(t(".us"), @match.opponent)
-        %td.hammer= "⚒" if line.shift
-        - line.each do |cell|
-          %td.scorecell= cell
-- else
-  %p 
-    = t(".no_results_yet")
-    = link_to t(".add_results"), edit_match_path(@match)
+        %td= t("." + pos)
+        %td
+          = @match.send("our_" + pos)
+          = "(S)" if @match.our_skip == (i+1)
+          = "(V)" if @match.our_viceskip == (i+1)
+        %td
+          = @match.send("their_" + pos)
+          = "(S)" if @match.their_skip == (i+1)
+          = "(V)" if @match.their_viceskip == (i+1)
+
+
+  %h3= t(".results")
+  - if @match.ends.any?
+    %table.scorecard
+      %tr
+        - ([ "", "" ] + (1..(@match.ends.size)).to_a + ["Sum"]).each do |s|
+          %th= s
+      - @match.scorecard.each do |line|
+        %tr
+          %td.team= cycle(t(".us"), @match.opponent)
+          %td.hammer= "⚒" if line.shift
+          - line.each do |cell|
+            %td.scorecell= cell
+  - else
+    %p 
+      = t(".no_results_yet")
+      = link_to t(".add_results"), edit_match_path(@match)

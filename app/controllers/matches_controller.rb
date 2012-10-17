@@ -1,4 +1,5 @@
 class MatchesController < ApplicationController
+  before_filter :sanitize_params, :only => [:update, :create]
   # GET /matches
   # GET /matches.json
   def index
@@ -82,6 +83,16 @@ class MatchesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to matches_url }
       format.json { head :no_content }
+    end
+  end
+
+  private
+
+  def sanitize_params
+    %w(our_skip their_skip our_viceskip their_viceskip).each do |fld|
+      if params[:match][fld] == "on"
+        params[:match][fld] = nil
+      end
     end
   end
 end

@@ -125,3 +125,13 @@ label {
 }
 
 
+table.lineup {
+  margin: auto auto;
+  td, th {
+    text-align: left;
+    padding-right: 0.8em;
+  }
+  th {
+    font-weight: bold;
+  }
+}

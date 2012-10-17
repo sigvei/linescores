@@ -35,4 +35,76 @@ describe Match do
       end
     end
   end
+
+  describe "default player per rock logic" do
+    describe "with four versus three players" do
+      before(:each) do
+        @players = {
+          :our_lead => "Haavard Vad Pettersson",
+          :our_second => "Christoffer Svae",
+          :our_third => "Torger Nergaard",
+          :our_fourth => "Thomas Ulsrud",
+          :their_lead => "Ben Hebert",
+          :their_second => "John Morris",
+          :their_third => "Kevin Martin" }
+
+        @m = Match.new({ :opponent => "Team Martin" }.merge(@players))
+      end
+
+      it "should pick the right players" do
+        corrects = [1,1,2,2,3,3,4,4]
+        corrects.each_with_index do |c,i|
+          @m.default_player(i + 1, :our).should == c
+        end
+
+        corrects = [1,1,1,2,2,2,3,3]
+        corrects.each_with_index do |c,i|
+          @m.default_player(i + 1, :their).should == c
+        end
+      end
+    end
+
+    describe "with three versus four players" do
+      before(:each) do
+        @players = {
+          :our_lead => "Haavard Vad Pettersson",
+          :our_second => "Christoffer Svae",
+          :our_third => "Torger Nergaard",
+          :their_lead => "Ben Hebert",
+          :their_second => "John Morris",
+          :their_third => "Marc Kennedy",
+          :their_fourth => "Kevin Martin" }
+
+        @m = Match.new({ :opponent => "Team Martin" }.merge(@players))
+      end
+
+      it "should pick the right players" do
+        corrects = [1,1,1,2,2,2,3,3]
+        corrects.each_with_index do |c,i|
+          @m.default_player(i + 1, :our).should == c
+        end
+
+        corrects = [1,1,2,2,3,3,4,4]
+        corrects.each_with_index do |c,i|
+          @m.default_player(i + 1, :their).should == c
+        end
+      end
+    end
+
+    describe "with no players" do
+      before(:each) do
+        @m = Match.new( :opponent => "Team Martin" )
+      end
+
+      it "should default to standard rotation" do
+        corrects = [1,1,2,2,3,3,4,4]
+        corrects.each_with_index do |c,i|
+          puts "Rock #{i + 1}, should be #{c}"
+          @m.default_player(i + 1, :our).should == c
+          @m.default_player(i + 1, :their).should == c
+        end
+      end
+    end
+
+  end
 end

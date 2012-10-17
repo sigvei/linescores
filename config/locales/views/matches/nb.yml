@@ -2,5 +2,25 @@ nb:
   matches:
     index:
       new_match: "Ny kamp"
+    edit:
+      title: "Redigér kamp"
+    new:
+      title: "Legg til kamp"
     show:
       show_match: "Kampdetaljer"
+      lineups: "Lagoppstillinger"
+      pos: "Posisjon"
+      us: "Oss"
+      lead: "Ener"
+      second: "Toer"
+      third: "Treer"
+      fourth: "Firer"
+      alternate: "Reserve"
+      results: "Resultater"
+    form:
+      our_lineup: "Vår lagoppstilling"
+      their_lineup: "Deres lagoppstilling"
+      result: "Resultat"
+      end_number: "Omgang"
+      our_score: "Våre poeng"
+      their_score: "Deres poeng"

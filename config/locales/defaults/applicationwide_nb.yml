@@ -1,2 +1,6 @@
 nb:
   application_name: Kampregisteret
+  back: "Tilbake"
+  edit: "Rediger"
+  save: "Lagre"
+  delete: "Slett"
