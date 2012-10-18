@@ -1,5 +1,15 @@
 Linescores::Application.routes.draw do
-  resources :matches
+  get "ends/show"
+
+  get "ends/edit"
+
+  get "ends/update"
+
+  get "ends/destroy"
+
+  resources :matches do
+    resources :ends, :only => [:show, :update, :edit]
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

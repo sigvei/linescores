@@ -1,7 +1,12 @@
 class End < ActiveRecord::Base
-  attr_accessible :match_id, :position, :result, :our_score, :their_score
+  attr_accessible :match_id, :position, :result, :our_score, :their_score,
+    :shots_attributes
   belongs_to :match
   has_many :shots, :dependent => :destroy
+
+  accepts_nested_attributes_for :shots,
+    :reject_if => lambda {|p| [p[:call], p[:turn], p[:success]].all?(&:blank?)},
+    :allow_destroy => true
   validates :our_score, :their_score, :inclusion => (0..8), :allow_blank => true
   acts_as_list :scope => :match
 

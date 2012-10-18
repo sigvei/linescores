@@ -2,12 +2,12 @@
 
 FactoryGirl.define do
   factory :shot do
-    end_id 1
-    team "MyString"
+    association :end, factory: :end
+    team "us"
     rock 1
-    call "MyString"
-    turn "MyString"
-    success 1
-    player "MyString"
+    call "D"
+    turn "I"
+    success 100
+    player "Thomas Ulsrud"
   end
 end

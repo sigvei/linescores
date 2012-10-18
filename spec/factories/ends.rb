@@ -2,8 +2,9 @@
 
 FactoryGirl.define do
   factory :end do
-    match_id 1
+    match
     position 1
-    result 1
+    our_score 5
+    their_score nil
   end
 end

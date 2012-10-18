@@ -17,8 +17,8 @@
       = @match.opponent
 
 
-  %h3= t(".lineups")
   %table.lineup
+    %caption= t(".lineups")
     %tr
       %th= t(".pos")
       %th= t(".us")
@@ -36,12 +36,22 @@
           = "(V)" if @match.their_viceskip == (i+1)
 
 
-  %h3= t(".results")
   - if @match.ends.any?
     %table.scorecard
+      %caption= t(".results")
+      %colgroup
+        %col{:span => 2}
+      %colgroup
+        %col{:span => @match.ends.size}
+      %colgroup#sum
+        %col
+
       %tr
-        - ([ "", "" ] + (1..(@match.ends.size)).to_a + ["Sum"]).each do |s|
-          %th= s
+        %th
+        %th
+        - (1..(@match.ends.size)).to_a.each do |s|
+          %th= link_to "#{End.model_name.human} #{s}", match_end_path(@match, @match.ends.at(s-1))
+        %th Sum
       - @match.scorecard.each do |line|
         %tr
           %td.team= cycle(t(".us"), @match.opponent)

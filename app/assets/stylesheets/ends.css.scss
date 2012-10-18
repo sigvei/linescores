@@ -1,0 +1,31 @@
+// Place all the styles related to the Ends controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+table.rocks {
+  border-collapse: collapse;
+  margin: auto auto;
+  th {
+    font-weight: bold;
+  }
+
+  tr.first {
+    border-bottom: 1px solid #aaa;
+  }
+
+  colgroup#rock, colgroup#us, colgroup#them {
+    border-right: 1px solid #aaa;
+  }
+
+  td,th {
+    padding: 6px 0.5em 6px 0.5em;
+  }
+
+  td {
+    border-bottom: 1px dotted #aaa;
+  }
+}
+.links {
+  text-align: center;
+  padding: 2em;
+}

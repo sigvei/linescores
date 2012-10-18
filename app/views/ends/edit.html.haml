@@ -1,0 +1,40 @@
+%h1= t(".title")
+
+%p= t(".check_box_to_delete")
+
+= form_for [@match, @end] do |f| 
+  - if @end.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@end.errors.count, "error")} prohibited this match from being saved:"
+      %ul
+        - @end.errors.full_messages.each do |msg|
+          %li= msg
+  %table.rocks
+    %colgroup#rock
+      %col
+    %colgroup#us
+      %col{:width => "150"}
+      %col{:span => 4, :width => "25"}
+    %colgroup#them
+      %col{:width => "150"}
+      %col{:span => 4, :width => "25"}
+    %tr.first
+      %th= Shot.human_attribute_name(:rock)
+      %th{:colspan => 5}= t("us")
+      %th{:colspan => 5}= @match.opponent
+    - rock = 1
+    - @end.shots.sort.each_slice(2) do |shots|
+      %tr
+        %th= rock
+        - shots.each do |shot|
+          = f.fields_for :shots, shot do |s|
+            = s.hidden_field :rock
+            = s.hidden_field :team
+            %td= s.text_field :player, :size => "15"
+            %td= s.select :call, Shot::CALLS.map{|s| ["#{s}: " + t("activerecord.attributes.shot.calls.#{s}"),s]}, { :include_blank => true }
+            %td= s.select :turn, Shot::TURNS, { :include_blank => true }
+            %td= s.select :success, Shot::SUCCESSES, { :include_blank => true }
+            %td= s.check_box :_destroy unless s.object.new_record?
+      - rock += 1
+
+  = f.submit

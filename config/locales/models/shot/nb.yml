@@ -1,0 +1,24 @@
+nb:
+  activerecord:
+    models:
+      shot: Sten
+    attributes:
+      shot:
+        player:  Spiller
+        call:    Oppgave
+        turn:    Retning
+        success: Karakter
+        rock: Sten
+        calls:
+          D: Dragning
+          F: Foran boet
+          G: Guard
+          R: Raise
+          W: Kyss, soft-peel
+          Z: Frys
+          T: Take-out
+          H: Hit med rull
+          C: Rensing
+          S: Dobbel take-out
+          P: Raise og take-out
+          X: Ikke tellende

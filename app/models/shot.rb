@@ -1,6 +1,9 @@
 class Shot < ActiveRecord::Base
   attr_accessible :call, :end_id, :player, :rock, :success, :team, :turn
 
+  scope :ours, where(:team => "us")
+  scope :theirs, where(:team => "them")
+
   belongs_to :end
 
   CALLS = %w(D F G R W Z T H C S P X) 
@@ -32,4 +35,11 @@ class Shot < ActiveRecord::Base
   validates :call, :inclusion => { :in => CALLS }
   validates :success, :inclusion => { :in => SUCCESSES, :allow_nil => true }
   
+  def <=>(b)
+    if rock == b.rock
+      b.team <=> team # to make us come in front of them
+    else
+      rock <=> b.rock
+    end
+  end
 end

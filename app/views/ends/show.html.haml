@@ -1,0 +1,33 @@
+%h1= t(".title")
+
+%table.rocks
+  %colgroup#rock
+    %col
+  %colgroup#us
+    %col{:width => "150"}
+    %col{:span => 3, :width => "25"}
+  %colgroup#them
+    %col{:width => "150"}
+    %col{:span => 3, :width => "25"}
+  %tr.first
+    %th= Shot.human_attribute_name(:rock)
+    %th{:colspan => 4}= t("us")
+    %th{:colspan => 4}= @match.opponent
+  - rock = 1
+  - @end.shots.sort.each_slice(2) do |shots|
+    %tr
+      %th= rock
+      - shots.each do |shot|
+        %td= shot.player
+        %td
+          - if shot.call
+            %span{:title => t("activerecord.attributes.shot.calls.#{shot.call}")}
+              = shot.call
+        %td= shot.turn
+        %td= shot.success
+    - rock += 1
+
+.links
+  = link_to t("edit"), edit_match_end_path(@match, @end)
+  \|
+  = link_to t("back"), match_path(@match)
