@@ -14,6 +14,7 @@ class Match < ActiveRecord::Base
   validate :skip_and_viceskip_must_be_different
 
   has_many :ends, :order => "position"
+  has_many :shots, :through => :ends
 
   accepts_nested_attributes_for :ends, 
     :reject_if => lambda {|attrb| attrb[:our_score].blank? && attrb[:their_score].blank?},

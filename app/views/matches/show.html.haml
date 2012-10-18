@@ -62,3 +62,17 @@
     %p 
       = t(".no_results_yet")
       = link_to t(".add_results"), edit_match_path(@match)
+
+  - if @stats
+    %table.stats
+      %caption= t(".stats")
+      %tr
+        %th
+        %th= t(".draws")
+        %th= t(".takeouts")
+      - @stats.each do |stat|
+        %tr
+          %td= stat[0]
+          %td= stat[1] ? "%d %%" % stat[1].to_i : "–"
+          %td= stat[2] ? "%d %%" % stat[2].to_i : "–"
+
