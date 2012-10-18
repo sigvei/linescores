@@ -20,10 +20,10 @@ describe EndsController do
     end
   end
 
-  describe "GET 'update'" do
+  describe "PUT 'update'" do
     it "returns http success" do
       put 'update', :match_id => @match.id, :id => @end.id
-      response.should be_success
+      response.should be_redirect
     end
   end
 
