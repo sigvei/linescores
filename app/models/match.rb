@@ -16,7 +16,7 @@ class Match < ActiveRecord::Base
   has_many :ends, :order => "position"
 
   accepts_nested_attributes_for :ends, 
-    :reject_if => lambda {|attrb| attrb[:our_score].blank? and attrb[:their_score].blank?},
+    :reject_if => lambda {|attrb| attrb[:our_score].blank? && attrb[:their_score].blank?},
     :allow_destroy => true
 
   before_save do
@@ -61,6 +61,12 @@ class Match < ActiveRecord::Base
     else
       4
     end
+  end
+
+  # +team+: either :our or :their
+  # +num+: 1..5
+  def player_name(team, num)
+    send(team.to_s + "_" + %w(lead second third fourth alternate).at(num - 1))
   end
 
   def scorecard

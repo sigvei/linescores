@@ -22,13 +22,6 @@
   margin: 0;
 }
 
-.match div {
-  display: inline-block;
-  vertical-align: middle;
-  padding: 0;
-  margin: 0;
-}
-
 .match .time {
   width: 80px;
   font-size: large;
@@ -111,12 +104,32 @@ table.scorecard {
     padding-left: 10px;
     padding-right: 10px;
   }
+  a {
+    color: blue;
+  }
+
+  #sum {
+    background: lighten(#aa7755, 20%);
+  }
+
+  th {
+    background: white;
+  }
 
   margin: auto auto;
 }
 
 .matchbox {
   text-align: center;
+  table {
+    margin-top: 3em;
+  }
+
+  caption {
+    font-weight: bold;
+    font-size: large;
+    padding-bottom: 0.5em;
+  }
 }
 
 label {
@@ -127,11 +140,13 @@ label {
 
 table.lineup {
   margin: auto auto;
+  border-collapse: collapse;
   td, th {
     text-align: left;
-    padding-right: 0.8em;
+    padding: 0.2em 0.8em 0.2em 0.8em;
   }
   th {
     font-weight: bold;
+    border-bottom: 1px solid #aa7755;
   }
 }
