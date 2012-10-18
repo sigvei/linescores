@@ -63,6 +63,12 @@ class Match < ActiveRecord::Base
     end
   end
 
+  # +team+: either :our or :their
+  # +num+: 1..5
+  def player_name(team, num)
+    send(team.to_s + "_" + %w(lead second third fourth alternate).at(num - 1))
+  end
+
   def scorecard
     return nil unless ends
     ( [ [our_first_hammer?, their_first_hammer?] ] + ends.map(&:score) + [ score ] ).transpose
