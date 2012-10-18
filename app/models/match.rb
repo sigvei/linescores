@@ -16,7 +16,7 @@ class Match < ActiveRecord::Base
   has_many :ends, :order => "position"
 
   accepts_nested_attributes_for :ends, 
-    :reject_if => lambda {|attrb| attrb[:our_score].blank? and attrb[:their_score].blank?},
+    :reject_if => lambda {|attrb| attrb[:our_score].blank? && attrb[:their_score].blank?},
     :allow_destroy => true
 
   before_save do
