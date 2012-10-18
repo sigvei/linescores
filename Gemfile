@@ -33,6 +33,7 @@ group :development do
   gem 'guard'
   gem 'guard-rspec'
   gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'rb-inotify' if RUBY_PLATFORM =~ /linux/i
   gem 'terminal-notifier-guard' if RUBY_PLATFORM =~ /darwin12/i
   gem 'coolline' if RUBY_VERSION == "1.9.3"
 end
