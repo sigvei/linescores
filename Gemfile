@@ -44,6 +44,8 @@ gem 'haml-rails'
 gem 'factory_girl_rails', "~> 4.0"
 gem 'acts_as_list'
 gem 'rserve-simpler'
+gem 'capistrano'
+gem 'rvm-capistrano'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -52,7 +54,7 @@ gem 'rserve-simpler'
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
