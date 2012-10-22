@@ -1,5 +1,6 @@
 class MatchesController < ApplicationController
   before_filter :sanitize_params, :only => [:update, :create]
+  before_filter :authenticate, :except => [:index, :show]
   # GET /matches
   # GET /matches.json
   def index

@@ -1,5 +1,6 @@
 class EndsController < ApplicationController
   before_filter :get_match
+  before_filter :authenticate, :except => [:show]
 
   def show
     edit

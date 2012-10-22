@@ -45,4 +45,22 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+
+  protected
+
+  def authenticate
+    authenticate_or_request_with_http_digest do |username|
+      get_users[username]
+    end
+  end
+
+  private
+
+  def get_users
+    begin
+      YAML.load_file("#{Rails.root}/config/users.yml")
+    rescue
+      { }
+    end
+  end
 end
