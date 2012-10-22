@@ -21,6 +21,10 @@ role :db,  "indregard.no", :primary => true # This is where Rails migrations wil
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"
 
+task :symlink_users, :except => { :no_release => true } do
+  run "ln -nfs #{shared_path}/config/users.yml #{release_path}/config/users.yml"
+end
+
 require 'rvm/capistrano'
 before 'deploy:setup', 'rvm:install_rvm'
 before 'deploy:setup', 'rvm:install_ruby'
