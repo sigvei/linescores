@@ -21,19 +21,21 @@ class ApplicationController < ActionController::Base
         R.command(df: data.to_dataframe) do
           "ddf <- with(df, aggregate(score, by=list(player=player, type=type), FUN=mean))"
         end
-        ret = R.converse("reshape(ddf, idvar='player', timevar='type', direction='wide')")
-        stats = ret.transpose
+        stats = R.converse("reshape(ddf, idvar='player', timevar='type', direction='wide')")
+        if stats.first.is_a? String
+          [ stats ]
+        else
+          stats = stats.transpose
 
-        if sortorder
-          stats.sort_by! do |row|
-            sortorder.index(row[0]) || -1
+          if sortorder
+            stats.sort_by! do |row|
+              sortorder.index(row[0]) || -1
+            end
           end
-        end
 
-        stats
+          stats
+        end
       rescue LoadError
-        nil
-      rescue TypeError
         nil
       end
     end
