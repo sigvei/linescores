@@ -53,12 +53,11 @@
           %th= link_to "#{End.model_name.human} #{s}", match_end_path(@match, @match.ends.at(s-1))
         %th Sum
       - @match.scorecard.each do |line|
-        - rbg = cycle('odd', 'even', name:'outer')
-        %tr
+        %tr{:class => cycle('odd', 'even', :name => "outer")}
           %td.team= cycle(t(".us"), @match.opponent)
           %td.hammer= "⚒" if line.shift
           - line.each do |cell|
-            %td.scorecell{:class => rbg}= cell
+            %td.scorecell= cell
   - else
     %p 
       = t(".no_results_yet")
