@@ -12,6 +12,8 @@ set :user, Capistrano::CLI.ui.ask("Server username: ")
 set :keep_releases, 3
 ssh_options[:forward_agent] = true
 
+set :rvm_ruby_string, 'ruby-1.9.3@linescores'
+
 role :web, "indregard.no"                          # Your HTTP server, Apache/etc
 role :app, "indregard.no"                          # This may be the same as your `Web` server
 role :db,  "indregard.no", :primary => true # This is where Rails migrations will run
@@ -19,5 +21,6 @@ role :db,  "indregard.no", :primary => true # This is where Rails migrations wil
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"
 
+require 'rvm/capistrano'
 require 'capistrano-unicorn'
 require './config/deploy/capistrano_database_yml'
