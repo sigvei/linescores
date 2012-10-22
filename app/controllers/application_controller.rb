@@ -33,6 +33,8 @@ class ApplicationController < ActionController::Base
         stats
       rescue LoadError
         nil
+      rescue TypeError
+        nil
       end
     end
   end
