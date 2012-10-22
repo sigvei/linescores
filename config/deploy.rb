@@ -28,6 +28,7 @@ end
 require 'rvm/capistrano'
 before 'deploy:setup', 'rvm:install_rvm'
 before 'deploy:setup', 'rvm:install_ruby'
+after 'deploy', 'symlink_users'
 
 require 'capistrano-unicorn'
 require './config/deploy/capistrano_database_yml'
