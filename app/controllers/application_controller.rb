@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  def get_shots_stats(shots)
+  def get_shots_stats(shots, sortorder=nil)
     if shots.size > 0
       begin
         require 'rserve/simpler/R'
@@ -23,6 +23,14 @@ class ApplicationController < ActionController::Base
         end
         ret = R.converse("reshape(ddf, idvar='player', timevar='type', direction='wide')")
         stats = ret.transpose
+
+        if sortorder
+          stats.sort_by! do |row|
+            sortorder.index(row[0]) || -1
+          end
+        end
+
+        stats
       rescue LoadError
         nil
       end

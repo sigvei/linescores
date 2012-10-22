@@ -79,6 +79,11 @@ class Match < ActiveRecord::Base
     not our_first_hammer?
   end
 
+
+  def our_lineup
+    [ our_lead, our_second, our_third, our_fourth, our_alternate ]
+  end
+
   private
 
   def skip_and_viceskip_must_be_different
