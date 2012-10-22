@@ -88,12 +88,14 @@
 # because they will live forever in your history.
 # This is why I use the Capistrano::CLI utility.
 #
+#
+require 'capistrano'
 
 unless Capistrano::Configuration.respond_to?(:instance)
   abort "This extension requires Capistrano 2"
 end
 
-Capistrano::Configuration.instance.load do
+Capistrano::Configuration.instance(:must_exist).load do
 
   namespace :deploy do
 
