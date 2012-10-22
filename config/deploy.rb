@@ -8,6 +8,7 @@ set :branch, :master
 set :deploy_to, '/srv/virtualhosts/indregard.no/apps/linescores'
 set :deploy_via, :remote_cache
 set :use_sudo, false
+set :user, Capistrano::CLI.ui.ask("Server username: ")
 set :keep_releases, 3
 ssh_options[:forward_agent] = true
 
