@@ -19,9 +19,14 @@ class ApplicationController < ActionController::Base
 
 
         R.command(df: data.to_dataframe) do
-          "ddf <- with(df, aggregate(score, by=list(player=player, type=type), FUN=mean))"
+          %Q{
+            separate <- with(df, aggregate(score, by=list(player=player, type=type), FUN=mean))
+            separate_n <- with(df, aggregate(score, by=list(player=player, type=paste(type, ' #')), FUN=length))
+            totals   <- with(df, aggregate(score, by=list(player=player, type=rep('Total', nrow(df))), FUN=mean))
+            ddf <- rbind(separate, separate_n, totals)
+          }
         end
-        stats = R.converse("reshape(ddf, idvar='player', timevar='type', direction='wide')")
+        stats = R.converse("reshape(ddf[order(ddf$type),], idvar='player', timevar='type', direction='wide')")
         if stats.first.is_a? String
           [ stats ]
         else

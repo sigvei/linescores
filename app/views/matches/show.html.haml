@@ -65,14 +65,24 @@
 
   - if @stats
     %table.stats
+      %colgroup
+        %col
+      %colgroup
+        %col{:span => 2}
+      %colgroup
+        %col{:span => 2}
       %caption= t(".stats")
       %tr
         %th
-        %th= t(".draws")
-        %th= t(".takeouts")
+        %th{:colspan=>2}= t(".draws")
+        %th{:colspan=>2}= t(".takeouts")
+        %th= t(".total")
       - @stats.each do |stat|
         %tr
           %td= stat[0]
           %td= stat[1] ? "%d %%" % stat[1].to_i : "–"
-          %td= stat[2] ? "%d %%" % stat[2].to_i : "–"
+          %td= stat[2] ? stat[2].to_i : "–"
+          %td= stat[3] ? "%d %%" % stat[3].to_i : "–"
+          %td= stat[4] ? stat[4].to_i : "–"
+          %td= stat[5] ? "%d %%" % stat[5].to_i : "–"
 
