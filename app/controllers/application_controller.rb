@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
         }
 
         R.command("library(reshape)")
-        ret = R.converse("cast(aggregate(score ~ player + type, df, mean), player ~ type)", df: data.to_dataframe)
+        ret = R.converse("reshape(aggregate(score ~ player + type, df, mean), idvar=c('player'), timevar='type', direction='wide')", df: data.to_dataframe)
         ret.transpose
       rescue LoadError
         nil
