@@ -22,5 +22,8 @@ role :db,  "indregard.no", :primary => true # This is where Rails migrations wil
 # after "deploy:restart", "deploy:cleanup"
 
 require 'rvm/capistrano'
+before 'deploy:setup', 'rvm:install_rvm'
+before 'deploy:setup', 'rvm:install_ruby'
+
 require 'capistrano-unicorn'
 require './config/deploy/capistrano_database_yml'
