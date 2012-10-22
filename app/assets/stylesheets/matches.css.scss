@@ -8,11 +8,11 @@
 }
 
 .odd {
-  background: #aacccc;
+  background: lighten(#aa7755, 35%);
 }
 
 .even {
-  background: #ccbb77;
+  background: lighten(#aa7755, 50%);
 }
 
 .match div {
@@ -20,6 +20,10 @@
   vertical-align: middle;
   padding: 0;
   margin: 0;
+}
+
+div.match:hover {
+  background: lighten(#aa7755, 10%);
 }
 
 .match .time {
@@ -80,7 +84,7 @@ h2 {
 
 table.scorecard {
   border-collapse: collapse;
-  margin: auto auto;
+  margin: 2em 0 2em 0;
   td.team {
     min-width: 5em;
     font-weight: normal;
@@ -108,15 +112,13 @@ table.scorecard {
     color: blue;
   }
 
-  #sum {
-    background: lighten(#aa7755, 20%);
+  #sum td {
+    background: lighten(#aa7755, 20%) !important;
   }
 
   th {
     background: white;
   }
-
-  margin: auto auto;
 }
 
 .matchbox {

@@ -15,7 +15,7 @@
     %th{:colspan => 4}= @match.opponent
   - rock = 1
   - @end.shots.sort.each_slice(2) do |shots|
-    %tr
+    %tr{:class => cycle('odd', 'even')}
       %th= rock
       - shots.each do |shot|
         %td= shot.player

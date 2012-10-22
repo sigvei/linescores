@@ -24,7 +24,7 @@
       %th= t(".us")
       %th= @match.opponent
     - %w(lead second third fourth alternate).each_with_index do |pos,i|
-      %tr
+      %tr{:class => cycle('odd', 'even', :name => 'lineup')}
         %td= t("." + pos)
         %td
           = @match.send("our_" + pos)
@@ -53,11 +53,12 @@
           %th= link_to "#{End.model_name.human} #{s}", match_end_path(@match, @match.ends.at(s-1))
         %th Sum
       - @match.scorecard.each do |line|
+        - rbg = cycle('odd', 'even', name:'outer')
         %tr
           %td.team= cycle(t(".us"), @match.opponent)
           %td.hammer= "⚒" if line.shift
           - line.each do |cell|
-            %td.scorecell= cell
+            %td.scorecell{:class => rbg}= cell
   - else
     %p 
       = t(".no_results_yet")
@@ -77,8 +78,9 @@
         %th{:colspan=>2}= t(".draws")
         %th{:colspan=>2}= t(".takeouts")
         %th= t(".total")
+      - reset_cycle
       - @stats.each do |stat|
-        %tr
+        %tr{:class => cycle('odd', 'even')}
           %td= stat[0]
           %td= stat[1] ? "%d %%" % stat[1].to_i : "–"
           %td= stat[2] ? stat[2].to_i : "–"
