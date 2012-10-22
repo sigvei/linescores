@@ -17,8 +17,12 @@ class ApplicationController < ActionController::Base
           rock:   shots.map(&:rock)
         }
 
-        ret = R.converse("reshape(aggregate(score ~ player + type, df, mean), idvar=c('player'), timevar='type', direction='wide')", df: data.to_dataframe)
-        ret.transpose
+
+        R.command(df: data.to_dataframe) do
+          "ddf <- with(df, aggregate(score, by=list(player=player, type=type), FUN=mean))"
+        end
+        ret = R.converse("reshape(ddf, idvar='player', timevar='type', direction='wide')")
+        stats = ret.transpose
       rescue LoadError
         nil
       end
