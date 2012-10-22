@@ -1,5 +1,5 @@
 # Set your full path to application.
-app_path = "/srv/indregard.no/apps/linescores/current"
+app_path = "/srv/virtualhosts/indregard.no/apps/linescores/current"
 
 # Set unicorn options
 worker_processes 1
