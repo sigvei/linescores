@@ -1,4 +1,5 @@
 require 'bundler/capistrano'
+require 'capistrano_database_yml'
 set :application, "linescores"
 set :repository,  "git@github.com:sigvei/linescores"
 
