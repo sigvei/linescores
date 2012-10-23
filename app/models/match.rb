@@ -115,6 +115,7 @@ class Match < ActiveRecord::Base
         end
       end.map{|line| line.join("\t")}.join("\n")
     end
+    desc
   end
 
   def uid
