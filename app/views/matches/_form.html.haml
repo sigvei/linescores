@@ -21,6 +21,9 @@
   .field
     = f.label :our_first_hammer
     = f.check_box :our_first_hammer
+  .field
+    = f.label :bambuser_id
+    = f.text_field :bambuser_id
   - %w(our their).each do |team|
     %strong= t("." + team + "_lineup")
     %table

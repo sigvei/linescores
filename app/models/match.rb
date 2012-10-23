@@ -1,7 +1,7 @@
 # encoding: UTF-8
 class Match < ActiveRecord::Base
   attr_accessible :location, :opponent, :time, :tournament, 
-    :ends_attributes, :our_first_hammer,
+    :ends_attributes, :our_first_hammer, :bambuser_id,
     :our_lead, :our_second, :our_third, :our_fourth, :our_alternate,
     :our_skip, :our_viceskip,
     :their_lead, :their_second, :their_third, :their_fourth, :their_alternate,

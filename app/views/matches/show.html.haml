@@ -87,3 +87,7 @@
           %td= stat[4] ? stat[4].to_i : "–"
           %td= stat[5] ? "%d %%" % stat[5].to_i : "–"
 
+  - unless @match.bambuser_id.blank?
+    %h3 Video
+    %iframe.matchvideo{src: "http://embed.bambuser.com/broadcast/%s" % @match.bambuser_id, width: 460, height: 396, frameborder:0}
+      Your browser does not support iframes
