@@ -9,6 +9,25 @@ class MatchesController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @matches }
+      format.ics do
+        cal = RiCal.Calendar do |cal|
+          @matches.each do |m|
+            if m.time
+              cal.event do |event|
+                event.summary       = m.to_summary
+                event.description   = m.to_description
+                event.dtstart       = m.time
+                event.dtend         = m.time + 2.hours
+                event.location      = m.location
+                event.created       = m.created_at
+                event.last_modified = m.updated_at
+                event.uid           = m.uid
+              end
+            end
+          end
+        end
+        render text: cal.export
+      end
     end
   end
 

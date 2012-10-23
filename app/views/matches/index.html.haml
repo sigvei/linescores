@@ -1,5 +1,8 @@
 %h1= t(:application_name)
 
+%p.centered
+  = link_to t(".ical_link"), matches_path(format: :ics, protocol: "webcal", only_path: false)
+
 - @matches.group_by{|m| m.time.try(:year)}.each do |year, matches|
   %h2= year
   - matches.each do |m|

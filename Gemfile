@@ -44,6 +44,8 @@ gem 'acts_as_list'
 gem 'rserve-simpler'
 gem 'capistrano'
 gem 'rvm-capistrano'
+gem 'ri_cal'
+gem 'uuidtools'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

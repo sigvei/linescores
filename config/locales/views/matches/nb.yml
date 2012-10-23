@@ -2,6 +2,7 @@ nb:
   matches:
     index:
       new_match: "Ny kamp"
+      ical_link: "Abonnér som iCal"
     edit:
       title: "Redigér kamp"
     new:

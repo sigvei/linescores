@@ -84,6 +84,43 @@ class Match < ActiveRecord::Base
     [ our_lead, our_second, our_third, our_fourth, our_alternate ]
   end
 
+  def to_summary
+    "#{opponent}" + (ends.size > 0 ? " #{our_score} - #{opponent_score}" : "")
+  end
+
+  def to_description
+    desc = <<-EOS
+#{location}
+#{tournament}
+#{our_lineup.delete_if(&:blank?).to_sentence}
+    EOS
+
+    sc = scorecard
+    if sc
+      sc[0] << "Us"
+      sc[1] << self.opponent
+      desc += sc.map do |line|
+        line.map do |cell|
+          if cell === true
+            "⚒"
+          elsif cell === false
+            " "
+          elsif cell.nil?
+            "  "
+          elsif cell.is_a? String
+            "%-10.10s" % cell
+          else
+            "%2d" % cell
+          end
+        end
+      end.map{|line| line.join("\t")}.join("\n")
+    end
+  end
+
+  def uid
+    UUIDTools::UUID.sha1_create(UUIDTools::UUID_OID_NAMESPACE, id.to_s).to_s
+  end
+
   private
 
   def skip_and_viceskip_must_be_different
