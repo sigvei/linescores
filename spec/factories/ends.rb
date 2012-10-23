@@ -3,8 +3,7 @@
 FactoryGirl.define do
   factory :end do
     match
-    position 1
-    our_score 5
-    their_score nil
+    our_score { rand(8) }
+    their_score { rand(8) }
   end
 end

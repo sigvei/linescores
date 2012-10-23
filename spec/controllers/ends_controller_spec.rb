@@ -4,6 +4,7 @@ describe EndsController do
   before(:each) do
     @match = FactoryGirl.create(:match)
     @end = FactoryGirl.create(:end, :match => @match)
+    ApplicationController.any_instance.stub(:authenticate)
   end
 
   describe "GET 'show'" do

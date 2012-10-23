@@ -16,11 +16,23 @@ describe MatchesController do
     {}
   end
 
+  before(:each) do
+    ApplicationController.any_instance.stub(:authenticate)
+  end
+
   describe "GET index" do
     it "assigns all matches as @matches" do
       match = Match.create! valid_attributes
       get :index, {}, valid_session
       assigns(:matches).should eq([match])
+    end
+
+    it "returns an iCalendar file" do
+      3.times { FactoryGirl.create :match_with_ends }
+      FactoryGirl.create :match
+      get :index, {:format => :ics}, valid_session
+      assigns(:matches).size.should == 4
+      response.body.scan("BEGIN:VEVENT").should have(4).items
     end
   end
 
