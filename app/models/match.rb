@@ -71,7 +71,7 @@ class Match < ActiveRecord::Base
   end
 
   def scorecard
-    return nil unless ends
+    return nil unless ends.any?
     ( [ [our_first_hammer?, their_first_hammer?] ] + ends.map(&:score) + [ score ] ).transpose
   end
 
