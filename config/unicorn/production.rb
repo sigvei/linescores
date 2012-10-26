@@ -35,7 +35,7 @@ end
 
 after_fork do |server, worker|
   ActiveRecord::Base.establish_connection
-  child_pid = server.config[:pid].sub('.pid', "#{worker.nr}.pid")
+  child_pid = server.config[:pid].sub('.pid', ".#{worker.nr}.pid")
   system("echo #{Process.pid} > #{child_pid}")
 end
 
