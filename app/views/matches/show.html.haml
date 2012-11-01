@@ -84,7 +84,7 @@
         %col{:span => 2}
       %colgroup
         %col
-      %caption= t(".stats")
+      %caption= t(".player_stats")
       %tr
         %th
         %th{:colspan=>2}= t(".draws")
@@ -105,6 +105,19 @@
             %td= stat[3] ? "%d %%" % stat[3].to_i : ""
             %td= stat[4] ? stat[4].to_i : ""
             %td= stat[5] ? "%d %%" % stat[5].to_i : ""
+
+  - unless @end_by_end.blank?
+    %table.stats
+      %caption= t(".end_by_end")
+      %tr
+        - @end_by_end.shift.each do |cell|
+          %th= cell
+      - reset_cycle
+      - @end_by_end.each do |row|
+        %tr{:class => cycle('odd', 'even')}
+          %td= t("." + row[0]) unless row[0].blank?
+          - row[1..-1].each do |cell|
+            %td= cell ? "%d %%" % cell.to_i : ""
 
   - unless @match.bambuser_id.blank?
     %h3 Video
