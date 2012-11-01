@@ -63,7 +63,10 @@
       = t(".no_results_yet")
       = link_to t(".add_results"), edit_match_path(@match)
 
-  - if @stats
+  - if @our_stats.any?
+    / When a1.zip(a2) does not work for us when a2 > a1.
+    - until @our_stats.length >= @their_stats.length
+      - @our_stats << [nil] * 6
     %table.stats
       %colgroup
         %col
@@ -71,21 +74,37 @@
         %col{:span => 2}
       %colgroup
         %col{:span => 2}
+      %colgroup
+        %col
+      %colgroup
+        %col
+      %colgroup
+        %col{:span => 2}
+      %colgroup
+        %col{:span => 2}
+      %colgroup
+        %col
       %caption= t(".stats")
       %tr
         %th
         %th{:colspan=>2}= t(".draws")
         %th{:colspan=>2}= t(".takeouts")
         %th= t(".total")
+        %th
+        %th{:colspan=>2}= t(".draws")
+        %th{:colspan=>2}= t(".takeouts")
+        %th= t(".total")
       - reset_cycle
-      - @stats.each do |stat|
+      - @our_stats.zip(@their_stats).each do |row|
         %tr{:class => cycle('odd', 'even')}
-          %td= stat[0]
-          %td= stat[1] ? "%d %%" % stat[1].to_i : "–"
-          %td= stat[2] ? stat[2].to_i : "–"
-          %td= stat[3] ? "%d %%" % stat[3].to_i : "–"
-          %td= stat[4] ? stat[4].to_i : "–"
-          %td= stat[5] ? "%d %%" % stat[5].to_i : "–"
+          - row.each do |stat|
+            - stat = Array.new(6, nil) if stat.nil? 
+            %td= stat[0]
+            %td= stat[1] ? "%d %%" % stat[1].to_i : ""
+            %td= stat[2] ? stat[2].to_i : ""
+            %td= stat[3] ? "%d %%" % stat[3].to_i : ""
+            %td= stat[4] ? stat[4].to_i : ""
+            %td= stat[5] ? "%d %%" % stat[5].to_i : ""
 
   - unless @match.bambuser_id.blank?
     %h3 Video

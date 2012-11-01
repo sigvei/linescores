@@ -84,6 +84,10 @@ class Match < ActiveRecord::Base
     [ our_lead, our_second, our_third, our_fourth, our_alternate ]
   end
 
+  def their_lineup
+    [ their_lead, their_second, their_third, their_fourth, their_alternate ]
+  end
+
   def to_summary
     "#{opponent}" + (ends.size > 0 ? " #{our_score} - #{opponent_score}" : "")
   end
