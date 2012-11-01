@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
@@ -31,17 +32,18 @@ class ApplicationController < ActionController::Base
           [ stats ]
         else
           stats = stats.transpose
-
-          if sortorder
-            stats.sort_by! do |row|
-              sortorder.index(row[0]) || -1
-            end
-          end
         end
 
         # Fix string encoding in first column
         stats.map! do |row|
           [ row[0].force_encoding("UTF-8") ] + row[1..-1]
+        end
+
+        # Sort 
+        if sortorder
+          stats.sort_by! do |row|
+            sortorder.index(row[0]) || -1
+          end
         end
 
         stats
