@@ -63,7 +63,7 @@
       = t(".no_results_yet")
       = link_to t(".add_results"), edit_match_path(@match)
 
-  - if @our_stats.any?
+  - unless @our_stats.blank? && @their_stats.blank?
     / When a1.zip(a2) does not work for us when a2 > a1.
     - until @our_stats.length >= @their_stats.length
       - @our_stats << [nil] * 6

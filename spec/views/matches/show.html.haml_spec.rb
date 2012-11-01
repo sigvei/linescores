@@ -58,7 +58,8 @@ describe "matches/show" do
 
   describe "with stats" do
     before(:each) do
-      @stats = assign(:stats, [ ["Sigve", 35, 3, 36, 3, 35], ["Christer", 100, 3, 100, 2, 100] ])
+      @our_stats = assign(:our_stats, [ ["Sigve", 35, 3, 36, 3, 35], ["Christer", 100, 3, 100, 2, 100] ])
+      @their_stats = assign(:their_stats, [ ])
     end
 
     it "renders a stats board" do

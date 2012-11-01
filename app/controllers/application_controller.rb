@@ -37,9 +37,14 @@ class ApplicationController < ActionController::Base
               sortorder.index(row[0]) || -1
             end
           end
-
-          stats
         end
+
+        # Fix string encoding in first column
+        stats.map! do |row|
+          [ row[0].force_encoding("UTF-8") ] + row[1..-1]
+        end
+
+        stats
       rescue LoadError
         nil
       end
