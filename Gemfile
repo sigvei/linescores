@@ -34,6 +34,10 @@ group :development do
   gem 'guard'
   gem 'guard-rspec'
   gem 'capistrano-unicorn', :require => false
+  gem 'listen'
+  gem 'rb-inotify', :require => false
+  gem 'rb-fsevent', :require => false
+  gem 'rb-fchange', :require => false
 end
 
 gem 'jquery-rails'
