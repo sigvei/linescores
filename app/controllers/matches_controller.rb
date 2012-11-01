@@ -35,8 +35,8 @@ class MatchesController < ApplicationController
   # GET /matches/1.json
   def show
     @match = Match.find(params[:id])
-    @our_stats = get_shots_stats(@match.shots.ours, @match.our_lineup) || []
-    @their_stats = get_shots_stats(@match.shots.theirs, @match.their_lineup) || []
+    @our_stats = get_shots_stats(@match.shots.ours.completed, @match.our_lineup) || []
+    @their_stats = get_shots_stats(@match.shots.theirs.completed, @match.their_lineup) || []
 
     respond_to do |format|
       format.html # show.html.erb

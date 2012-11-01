@@ -3,6 +3,7 @@ class Shot < ActiveRecord::Base
 
   scope :ours, where(:team => "us")
   scope :theirs, where(:team => "them")
+  scope :completed, where("success IS NOT NULL")
 
   belongs_to :end
 
