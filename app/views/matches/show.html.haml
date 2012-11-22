@@ -56,7 +56,7 @@
         %tr{:class => cycle('odd', 'even', :name => "outer")}
           %td.team= cycle(t(".us"), @match.opponent)
           %td.hammer= "⚒" if line.shift
-          - line.each do |cell|
+          - line.each do |cell, nend|
             %td.scorecell= cell
   - else
     %p 

@@ -50,7 +50,7 @@ class MatchesController < ApplicationController
   # GET /matches/new.json
   def new
     @match = Match.new
-    12.times { @match.ends.build }
+    prepare_ends(@match)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -61,9 +61,7 @@ class MatchesController < ApplicationController
   # GET /matches/1/edit
   def edit
     @match = Match.find(params[:id])
-    until @match.ends.size == 12
-      @match.ends.build
-    end
+    prepare_ends(@match)
   end
 
   # POST /matches
@@ -76,6 +74,7 @@ class MatchesController < ApplicationController
         format.html { redirect_to @match, notice: 'Match was successfully created.' }
         format.json { render json: @match, status: :created, location: @match }
       else
+        prepare_ends(@match)
         format.html { render action: "new" }
         format.json { render json: @match.errors, status: :unprocessable_entity }
       end
@@ -92,6 +91,7 @@ class MatchesController < ApplicationController
         format.html { redirect_to @match, notice: 'Match was successfully updated.' }
         format.json { head :no_content }
       else
+        prepare_ends(@match)
         format.html { render action: "edit" }
         format.json { render json: @match.errors, status: :unprocessable_entity }
       end
@@ -117,6 +117,12 @@ class MatchesController < ApplicationController
       if params[:match][fld] == "on"
         params[:match][fld] = nil
       end
+    end
+  end
+
+  def prepare_ends(match)
+    until match.ends.size == 12
+      match.ends.build
     end
   end
 end

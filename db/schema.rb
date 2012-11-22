@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121023123053) do
+ActiveRecord::Schema.define(:version => 20121122123701) do
 
   create_table "ends", :force => true do |t|
     t.integer  "match_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20121023123053) do
     t.datetime "updated_at",  :null => false
     t.integer  "our_score"
     t.integer  "their_score"
+    t.boolean  "xed"
   end
 
   create_table "matches", :force => true do |t|

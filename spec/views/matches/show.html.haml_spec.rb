@@ -38,6 +38,17 @@ describe "matches/show" do
       render
       rendered.should have_selector("table.scorecard")
     end
+
+    it "renders Xed ends correctly" do
+      e = @match.ends.last
+      e.our_score = "X"
+      e.should be_xed
+      e.save
+      @match.reload
+      render
+
+      rendered.should have_selector("td", :text => "X", :count => 2)
+    end
   end
 
   describe "without results or video" do

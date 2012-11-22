@@ -53,6 +53,7 @@
         %th= t(".end_number")
         %th= t(".our_score")
         %th= t(".their_score")
+        %th= t(".xed")
       - @position = 0
       = f.fields_for :ends do |builder|
         = render 'ends_fields', :f => builder

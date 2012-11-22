@@ -13,11 +13,11 @@ class Match < ActiveRecord::Base
 
   validate :skip_and_viceskip_must_be_different
 
-  has_many :ends, :order => "position"
+  has_many :ends, :order => "position", :inverse_of => :match
   has_many :shots, :through => :ends
 
   accepts_nested_attributes_for :ends, 
-    :reject_if => lambda {|attrb| attrb[:our_score].blank? && attrb[:their_score].blank?},
+    :reject_if => lambda {|attrb| attrb[:our_score].blank? && attrb[:their_score].blank? && attrb[:xed].to_i != 1},
     :allow_destroy => true
 
   before_save do
@@ -33,8 +33,8 @@ class Match < ActiveRecord::Base
       [nil, nil]
     else
       ends.inject([0,0]) do |score, e|
-        [ score[0] + (e.score[0] || 0),
-          score[1] + (e.score[1] || 0) ]
+        [ score[0] + (e.our_score || 0),
+          score[1] + (e.their_score || 0) ]
       end
     end
   end
@@ -136,4 +136,5 @@ class Match < ActiveRecord::Base
       errors.add(:their_viceskip, "can't be the same as skip")
     end
   end
+
 end
