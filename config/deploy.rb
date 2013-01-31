@@ -12,7 +12,7 @@ set :user, Capistrano::CLI.ui.ask("Server username: ")
 set :keep_releases, 3
 ssh_options[:forward_agent] = true
 
-set :rvm_ruby_string, 'ruby-1.9.3@linescores'
+set :rvm_ruby_string, 'ruby-1.9.3-p374@linescores'
 
 role :web, "indregard.no"                          # Your HTTP server, Apache/etc
 role :app, "indregard.no"                          # This may be the same as your `Web` server
