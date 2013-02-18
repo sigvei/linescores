@@ -11,7 +11,14 @@
     = f.text_field :opponent
   .field
     = f.label :time
-    = f.datetime_select :time
+    = f.text_field :time, value: I18n.l(f.object.time, format: "%Y-%m-%d %H:%M")
+
+  :javascript
+    $("#match_time").datetimepicker({
+      timeFormat: 'HH:mm',
+      dateFormat: 'yy-mm-dd'
+    });
+
   .field
     = f.label :location
     = f.text_field :location

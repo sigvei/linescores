@@ -41,6 +41,7 @@ group :development do
 end
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 gem 'haml-rails'
 gem 'factory_girl_rails', "~> 4.0"

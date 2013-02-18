@@ -90,6 +90,9 @@ GEM
     jquery-rails (2.2.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (4.0.1)
+      jquery-rails
+      railties (>= 3.1.0)
     json (1.7.7)
     kgio (2.8.0)
     libv8 (3.11.8.13)
@@ -226,6 +229,7 @@ DEPENDENCIES
   guard-rspec
   haml-rails
   jquery-rails
+  jquery-ui-rails
   listen
   mysql2
   rails (= 3.2.12)
